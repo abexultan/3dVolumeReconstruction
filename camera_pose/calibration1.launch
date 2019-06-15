@@ -1,0 +1,103 @@
+<launch>
+
+  <!-- Parameters possible to change-->
+    <arg name="camera1_id" default="A22596V03205310A" /><!-- here you can change 1@0 by the serial number -->
+    <arg name="camera2_id" default="A22596V02246310A" /><!-- here you can change 2@0 by the serial number -->
+    <arg name="camera3_id" default="A22596V02323310A" />
+    <arg name="camera4_id" default="A22596V03345310A" />
+    <arg name="depth_registration" default="true" />
+
+  <!-- Default parameters-->
+    <arg name="camera1_name" default="kinect1" />
+    <arg name="camera2_name" default="kinect2" />
+    <arg name="camera3_name" default="kinect4" />
+    <arg name="camera4_name" default="kinect3" />
+ <!-- Putting the time back to real time-->
+  
+
+<!-- Openning Rviz for visualization-->
+<node name="rviz" pkg="rviz" type="rviz"/>
+
+  <!-- Launching first kinect-->
+    <!-- <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="device_id" value="$(arg camera1_id)" />
+        <arg name="camera" value="$(arg camera1_name)" />
+        <arg name="depth_registration" value="$(arg depth_registration)" />
+     </include> -->
+
+ <!-- Launching second kinect-->
+    <!-- <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="device_id" value="$(arg camera2_id)" />
+        <arg name="camera" value="$(arg camera2_name)" />
+        <arg name="depth_registration" value="$(arg depth_registration)" />
+     </include>
+
+     <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="device_id" value="$(arg camera3_id)" />
+        <arg name="camera" value="$(arg camera3_name)" />
+        <arg name="depth_registration" value="$(arg depth_registration)" />
+     </include>
+     <include file="$(find freenect_launch)/launch/freenect.launch">
+        <arg name="device_id" value="$(arg camera4_id)" />
+        <arg name="camera" value="$(arg camera4_name)" />
+        <arg name="depth_registration" value="$(arg depth_registration)" />
+     </include> -->
+
+    <node
+    name="kinect1_depth_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 kinect kinect1_depth_optical_frame 40" />
+<!-- <node
+    name="kinect1_rgb_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 -0.025 0 0 0 0 kinect kinect1_rgb_optical_frame 40" />
+
+    <node
+    name="kinect2_depth_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="2.003372192383 -1.146584749222 1.517305612564 -1.543927841590074 -0.881334381078596 0.946173722731601 kinect kinect2_depth_optical_frame 40" />
+<node
+    name="kinect2_rgb_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="2.003372192383 -1.171584749222 1.517305612564 -1.543927841590074 -0.881334381078596 0.946173722731601 kinect kinect2_rgb_optical_frame 40" />
+
+<node
+    name="kinect4_depth_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="-2.032633781433 -1.144315004349 1.418610095978 1.432654613965781 0.926579118447947 0.884042019227129 kinect kinect4_depth_optical_frame 40" />
+<node
+    name="kinect4_rgb_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="-2.032633781433 -1.169315004349 1.418610095978 1.432654613965781 0.926579118447947 0.884042019227129 kinect kinect4_rgb_optical_frame 40" />
+
+<node
+    name="kinect3_depth_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="-0.066353767202088 -2.358839779363984  3.119342204736189 -3.130088628737208 0.077944330195694 1.946698919149064 kinect kinect3_depth_optical_frame 40" />
+<node
+    name="kinect3_rgb_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="-0.066353767202088 -2.383839779363984  3.119342204736189 -3.130088628737208 0.077944330195694 1.946698919149064 kinect kinect3_rgb_optical_frame 40" /> -->
+
+<!-- <node pkg="rostopic" type="rostopic" name="joined_kinects" args="pub /kinect"/> -->
+<!-- <node
+    name="kinect2_depth_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 kinect kinect2_depth_optical_frame 40" />
+<node
+    name="kinect2_rgb_optical_frame"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 kinect kinect2_rgb_optical_frame 40" /> -->
+  </launch>
+<!-- -0.1995 -2.1851 3.2460 3.0599 0.1245 1.9615 -->
+<!-- -0.1735 -1.9762 3.3265 3.1083 0.1532 2.0799 -->

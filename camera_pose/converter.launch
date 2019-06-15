@@ -1,0 +1,64 @@
+<launch>
+
+
+
+  <!-- Nodelet manager for this pipeline -->
+  <node pkg="nodelet" type="nodelet" args="manager"
+        name="record_player_manager" output="screen"/>
+  
+
+  
+<node pkg="nodelet" type="nodelet" name="rect1" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect1/depth_registered/image_raw"/>
+    <remap from="camera_info" to="kinect1/depth_registered/camera_info"/>
+    <remap from="image_rect" to="kinect1/depth_registered/image_rect"/> 
+     </node>
+ <node pkg="nodelet" type="nodelet" name="rect2" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect2/depth_registered/image_raw"/>
+    <remap from="camera_info" to="kinect2/depth_registered/camera_info"/>
+    <remap from="image_rect" to="kinect2/depth_registered/image_rect"/>
+  </node>
+  <node pkg="nodelet" type="nodelet" name="rect3" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect3/depth_registered/image_raw"/>
+    <remap from="camera_info" to="kinect3/depth_registered/camera_info"/>
+    <remap from="image_rect" to="kinect3/depth_registered/image_rect"/>
+  </node>
+  <node pkg="nodelet" type="nodelet" name="rect4" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect4/depth_registered/image_raw"/>
+    <remap from="camera_info" to="kinect4/depth_registered/camera_info"/>
+    <remap from="image_rect" to="kinect4/depth_registered/image_rect"/>
+  </node>
+
+  <!-- Convert it into a point cloud -->
+  <node pkg="nodelet" type="nodelet" name="cloudify1"
+        args="load depth_image_proc/point_cloud_xyz record_player_manager --no-bond">
+    <remap from="image_rect" to="kinect1/depth_registered/image_rect"/>
+    <remap from="camera_info" to="kinect1/depth_registered/camera_info"/>
+    <remap from="points" to="kinect1/depth_registered/points"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="cloudify2"
+        args="load depth_image_proc/point_cloud_xyz record_player_manager --no-bond">
+    <remap from="image_rect" to="kinect2/depth_registered/image_rect"/>
+    <remap from="camera_info" to="kinect2/depth_registered/camera_info"/>
+    <remap from="points" to="kinect2/depth_registered/points"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="cloudify3"
+        args="load depth_image_proc/point_cloud_xyz record_player_manager --no-bond">
+    <remap from="image_rect" to="kinect3/depth_registered/image_rect"/>
+    <remap from="camera_info" to="kinect3/depth_registered/camera_info"/>
+    <remap from="points" to="kinect3/depth_registered/points"/>
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="cloudify4"
+        args="load depth_image_proc/point_cloud_xyz record_player_manager --no-bond">
+    <remap from="image_rect" to="kinect4/depth_registered/image_rect"/>
+    <remap from="camera_info" to="kinect4/depth_registered/camera_info"/>
+    <remap from="points" to="kinect4/depth_registered/points"/>
+  </node>
+</launch>

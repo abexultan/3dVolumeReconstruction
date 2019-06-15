@@ -1,0 +1,29 @@
+<launch>
+<node pkg="nodelet" type="nodelet" args="manager"
+        name="record_player_manager" output="screen"/>
+
+<node pkg="nodelet" type="nodelet" name="rect" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect1/depth/image_raw"/>
+    <remap from="camera_info" to="kinect1/depth/camera_info"/>
+    <remap from="image_rect" to="kinect1/depth/image_rect1"/>
+  </node>
+ <node pkg="nodelet" type="nodelet" name="rect" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect2/depth/image_raw"/>
+    <remap from="camera_info" to="kinect2/depth/camera_info"/>
+    <remap from="image_rect" to="kinect2/depth/image_rect1"/>
+  </node>
+  <node pkg="nodelet" type="nodelet" name="rect" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect4/depth/image_raw"/>
+    <remap from="camera_info" to="kinect4/depth/camera_info"/>
+    <remap from="image_rect" to="kinect4/depth/image_rect1"/>
+  </node>
+  <node pkg="nodelet" type="nodelet" name="rect" 
+        args="load image_proc/rectify record_player_manager --no-bond">
+    <remap from="image_mono" to="kinect3/depth/image_raw"/>
+    <remap from="camera_info" to="kinect3/depth/camera_info"/>
+    <remap from="image_rect" to="kinect3/depth/image_rect1"/>
+  </node>
+</launch>
